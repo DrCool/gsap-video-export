@@ -49,21 +49,6 @@ const colors = {
 const { version } = JSON.parse(fs.readFileSync(new URL('./package.json', import.meta.url)))
 console.log(`gsap-video-export ${version} / ${colors.blue}@defaced${colors.reset}`)
 
-/* Support */
-if (!process.env.WORKEFFORTWASTE_SUPPORTER) {
-  console.log(`${colors.magenta}
-┃
-┃ ${colors.underscore}Support this project! ${colors.reset}${colors.magenta}
-┃
-┃ Help support the work that goes into creating and maintaining my projects
-┃ and buy me a coffee via Ko-fi or sponsor me on GitHub Sponsors.
-┃
-┃ Ko-fi: https://ko-fi.com/defaced
-┃ GitHub Sponsors: https://github.com/sponsors/workeffortwaste/
-┃${colors.reset}
-  `)
-}
-
 const _yargs = yargs(hideBin(process.argv))
 
 /* CLI arguments config */
@@ -394,7 +379,7 @@ const exportVideo = async () => {
     const el = options.selector === 'document' ? page : await page.$(options.selector)
 
     /* Take a screenshot */
-    await el.screenshot({ path: tmpobj.name + '/' + frameStep + '.png' })
+    el.screenshot({ path: tmpobj.name + '/' + frameStep + '.png' })
 
     /* Increment and update the CLI export progress bar */
     b1.increment()
